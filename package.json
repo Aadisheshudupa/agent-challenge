@@ -27,7 +27,9 @@
     "@mastra/libsql": "^0.10.2",
     "@mastra/loggers": "^0.10.2",
     "@mastra/memory": "^0.10.3",
+    "@types/js-yaml": "^4.0.9",
     "dotenv": "^16.5.0",
+    "js-yaml": "^4.1.0",
     "ollama-ai-provider": "^1.2.0",
     "zod": "^3.25.67"
   },

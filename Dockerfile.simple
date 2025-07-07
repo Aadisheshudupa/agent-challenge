@@ -1,0 +1,19 @@
+FROM node:22-slim
+
+# Environment variables
+ENV API_BASE_URL=http://host.docker.internal:11434/api
+ENV MODEL_NAME_AT_ENDPOINT=qwen2.5:1.5b
+
+# Install dependencies
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install
+
+# Copy application
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Start the application
+CMD ["pnpm", "run", "dev"]

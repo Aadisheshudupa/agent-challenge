@@ -1,0 +1,11 @@
+apiVersion: kubelite.io/v1
+kind: Application
+metadata:
+  name: my-first-app
+spec:
+  replicas: 3
+  container:
+    image: "nginx:latest"
+    ports:
+      - containerPort: 80
+        protocol: TCP

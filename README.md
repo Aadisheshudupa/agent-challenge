@@ -1,13 +1,29 @@
-# Nosana Builders Challenge: Agent-101
+# KubeLite Agent - Nosana Builders Challenge Submission
 
 ![Agent-101](./assets/NosanaBuildersChallengeAgents.jpg)
 
-## Topic
+## 🚀 Agent Description
 
-Nosana Builders Challenge, 2nd edition
-Agent-101: Build your first agent
+**KubeLite** is an AI-native container orchestrator specifically designed for the Nosana network. This advanced agent leverages Large Language Models (LLM) for intelligent infrastructure management, moving beyond traditional rule-based orchestration to provide natural language control, intelligent failure analysis, and automated healing capabilities.
 
-## Description
+### Key Features
+
+- **🤖 Full LLM Integration**: All command parsing, failure analysis, and decision-making powered by AI
+- **🗣️ Natural Language Control**: Deploy and manage containers using conversational commands
+- **🩺 AI-Powered Healing**: Intelligent failure detection, analysis, and automatic remediation
+- **📊 Smart Monitoring**: Real-time health checks with AI-driven insights
+- **🔄 Continuous Reconciliation**: Automated state management and drift correction
+- **⚡ Lightweight**: Optimized for efficient resource usage on Nosana network
+
+### Use Cases
+
+- Container deployment and scaling through natural language
+- Automated failure detection and remediation for production workloads
+- Infrastructure management for developers without Kubernetes expertise
+- Intelligent log analysis and root cause diagnosis
+- Proactive system health monitoring and alerts
+
+## Original Challenge Description
 
 The main goal of this `Nosana Builders Challenge` to teach participants to build and deploy agents. This first step will be in running a basic AI agent and giving it some basic functionality. Participants will add a tool, for the tool calling capabilities of the agent. These are basically some TypeScript functions, that will, for example, retrieve some data from a weather API, post a tweet via an API call, etc.
 
@@ -23,6 +39,105 @@ We recommend reading the following sections to get started with how to create an
 
 - <https://mastra.ai/en/docs/agents/overview>
 - [Mastra Guide: Build an AI stock agent](https://mastra.ai/en/guides/guide/stock-agent)
+
+## 🛠️ KubeLite Setup Instructions
+
+### Prerequisites
+
+- **Node.js >= 20.9.0** (IMPORTANT: Required for Mastra framework)
+- Docker (for containerization)
+- pnpm (recommended) or npm
+- Ollama (for local LLM) or access to Nosana LLM endpoint
+
+> **Note**: If you have Node.js < 20.9.0, please upgrade before running `pnpm run dev` or `pnpm run build`.
+
+### Environment Setup
+
+1. **Clone the repository**:
+```bash
+git clone <your-fork-url>
+cd agent-challenge
+```
+
+2. **Install dependencies**:
+```bash
+pnpm install
+```
+
+3. **Configure environment variables**:
+Create a `.env` file based on `.env.example`:
+
+```bash
+# For local development with Ollama
+MODEL_NAME_AT_ENDPOINT=qwen2.5:1.5b
+API_BASE_URL=http://127.0.0.1:11434/api
+
+# For Nosana network (alternative)
+# MODEL_NAME_AT_ENDPOINT=qwen2.5:1.5b
+# API_BASE_URL=https://dashboard.nosana.com/jobs/GPVMUckqjKR6FwqnxDeDRqbn34BH7gAa5xWnWuNH1drf
+```
+
+4. **Start local development**:
+```bash
+pnpm run dev
+```
+
+### KubeLite Agent Usage
+
+Once running, navigate to `http://localhost:8080` and interact with the KubeLite agent using natural language:
+
+#### Example Commands
+
+**Deployment Commands:**
+- "Deploy 3 instances of nginx using nginx:alpine image"
+- "Create a redis deployment with 2 replicas"
+- "Scale my-app to 5 containers"
+
+**Monitoring Commands:**
+- "Show me what's currently running"
+- "Check the health of all deployments"
+- "What's broken in my infrastructure?"
+
+**Healing Commands:**
+- "Analyze any failures in my deployments"
+- "Auto-heal my broken containers"
+- "Simulate a failure for testing"
+
+#### Advanced Features
+
+**AI-Powered Failure Analysis:**
+The agent can intelligently analyze container logs, identify root causes, and suggest remediation strategies using LLM reasoning.
+
+**Natural Language YAML Generation:**
+Automatically converts conversational commands into proper container deployment manifests.
+
+**Proactive Healing:**
+Continuously monitors deployments and can automatically fix common issues like resource constraints, image pull failures, and configuration errors.
+
+## 🔧 Troubleshooting
+
+### Node.js Version Issues
+If you encounter build errors, ensure you're using Node.js >= 20.9.0:
+```bash
+node --version  # Should show >= 20.9.0
+```
+
+To upgrade Node.js:
+- **Windows**: Download from [nodejs.org](https://nodejs.org)
+- **macOS**: Use `brew install node` or download from nodejs.org
+- **Linux**: Use your package manager or [NodeSource](https://github.com/nodesource/distributions)
+
+### LLM Connection Issues
+If the agent can't connect to the LLM:
+1. For Ollama: Ensure `ollama serve` is running
+2. For Nosana: Check your API endpoint in `.env`
+3. Verify the model name matches your endpoint configuration
+
+### Docker Build Issues
+If Docker build fails:
+1. Ensure Docker is running
+2. Check that all files are properly copied in Dockerfile
+3. Verify your base image supports the required Node.js version
 
 ## Get Started
 
@@ -166,6 +281,60 @@ docker run -p 8080:8080 --env-file .env yourusername/agent-challenge:latest
 ```
 
 Ensure your agent responds correctly and all tools function properly within the containerized environment. This step is critical as the Nosana deployment will use this exact container.
+
+## 🏆 KubeLite Submission Details
+
+### Agent Overview
+
+**KubeLite** represents an advanced submission to the Nosana Builders Challenge, demonstrating sophisticated AI-native infrastructure orchestration capabilities that go beyond basic tool calling to provide intelligent, conversational container management.
+
+### Technical Innovation
+
+**Full LLM Integration:** Unlike traditional orchestrators that rely on rigid rule-based logic, KubeLite uses Large Language Models for:
+- **Intelligent Command Parsing**: Converts natural language requests into infrastructure actions
+- **AI-Powered Failure Analysis**: Analyzes logs and system state to identify root causes
+- **Automated Remediation**: Uses LLM reasoning to determine and execute optimal fix strategies
+- **Smart Resource Management**: Makes intelligent decisions about scaling and resource allocation
+
+### Real-World Impact
+
+**Target Use Case**: Simplifying container orchestration for the Nosana ecosystem by providing an AI-first approach that makes infrastructure management accessible to developers without deep Kubernetes expertise.
+
+**Value Proposition**:
+- Reduces operational complexity through natural language interfaces
+- Minimizes downtime with proactive AI-powered healing
+- Optimizes resource utilization for cost-effective deployments
+- Provides intelligent insights into system health and performance
+
+### Docker Container
+
+**Container Registry**: `yourusername/kubelite-agent:latest`
+
+**Build Commands**:
+```bash
+# Build and tag the container
+docker build -t yourusername/kubelite-agent:latest .
+
+# Test locally
+docker run -p 8080:8080 yourusername/kubelite-agent:latest
+
+# Push to registry
+docker login
+docker push yourusername/kubelite-agent:latest
+```
+
+### Nosana Deployment
+
+The KubeLite agent is configured for deployment on Nosana using the provided job definition at `./nos_job_def/nosana_mastra.json`.
+
+**Deployment Steps**:
+1. Update the job definition with your container image
+2. Use Nosana CLI: `nosana job post --file nosana_mastra.json --market nvidia-3060 --timeout 30`
+3. Monitor deployment on [Nosana Dashboard](https://dashboard.nosana.com/deploy)
+
+### Video Demo
+
+[Link to video demonstration will be provided]
 
 ### Submission Requirements
 
